@@ -1,0 +1,4 @@
+April 08, 2024
+1. composer require laravel/breeze --dev
+2. php artisan breeze:install
+3. composer require barryvdh/laravel-debugbar --dev
