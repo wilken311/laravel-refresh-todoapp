@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -11,8 +13,16 @@ class TodoController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('todos.index');
+    {   
+        
+        $userId = auth()->id(); //Get the current user_id
+        $todos = Todo::where('user_id',$userId)->get(); //Get all todos, only for the current logged in user.
+
+        //Another way of getting all todos via User Model.
+        // $user = User::find(2);
+        // $todos = $user->todos()->get();
+      
+        return view('todos.index',['todos'=>$todos]);
     }
 
     /**
@@ -20,7 +30,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+        return view('todos.create');
     }
 
     /**
@@ -28,7 +38,16 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+        ]);
+
+        $request->user()->todos()->create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+        ]);
+        
+        return redirect('todos');
     }
 
     /**

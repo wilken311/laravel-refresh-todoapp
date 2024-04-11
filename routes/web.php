@@ -13,9 +13,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('todos', TodoController::class)->except([
-    'create', 'store', 'update', 'destroy'
-]);
+Route::resource('todos', TodoController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
