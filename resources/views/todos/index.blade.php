@@ -31,7 +31,7 @@
                                         <td class="border border-slate-700">{{$todo->title}}</td>
                                         <td class="border border-slate-700">{{$todo->description}}</td>
                                         <td class="border border-slate-700">{{$todo->created_at}}</td>
-                                        <td class="border border-slate-700">Edit | Delete</td>
+                                        <td class="border border-slate-700"><a href="{{ route('todos.edit', $todo->id) }}">Edit</a> | Delete</td>
                                     </tr>    
                                     @endforeach
                                 @endif

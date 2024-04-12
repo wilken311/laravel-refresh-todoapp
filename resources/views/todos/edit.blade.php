@@ -1,0 +1,46 @@
+<x-app-layout>
+    <x-slot name="header">
+        <div class="flex justify-normal items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Todo') }}
+            </h2>
+            <x-primary-button class="ms-3">
+                    {{ __('Create') }}
+            </x-primary-button>
+        <div>
+    </x-slot>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100 w-full">
+                    <form method="POST" action="{{ route('todos.update', $todo) }}">
+                        @csrf
+                        @method('PUT')
+                        <div class="flex flex-col space-y-4">
+                            <!-- Title -->
+                            <div>
+                                <x-input-label for="title" :value="__('Title')" />
+                                <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="$todo->title"  />
+                                <x-input-error :messages="$errors->get('title')" class="mt-2" />
+                            </div>
+
+                            <!-- Description -->
+                            <div>
+                                <x-input-label for="description" :value="__('Description')" />
+                                <x-text-input id="description" class="block mt-1 w-full" type="text" name="description" :value="$todo->description"  />
+                                <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div>
+                                <x-primary-button>
+                                    {{ __('Submit') }}
+                                </x-primary-button>
+                            <div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

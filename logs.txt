@@ -2,6 +2,7 @@ Command Used:
 1. composer require laravel/breeze --dev
 2. php artisan breeze:install
 3. composer require barryvdh/laravel-debugbar --dev
+4. php artisan make:component todo.form --view
 
 To run:
 1. npm run dev
