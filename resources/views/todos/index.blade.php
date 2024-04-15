@@ -31,7 +31,15 @@
                                         <td class="border border-slate-700">{{$todo->title}}</td>
                                         <td class="border border-slate-700">{{$todo->description}}</td>
                                         <td class="border border-slate-700">{{$todo->created_at}}</td>
-                                        <td class="border border-slate-700"><a href="{{ route('todos.edit', $todo->id) }}">Edit</a> | Delete</td>
+                                        <td class="border border-slate-700">
+                                            <a href="{{ route('todos.show', $todo->id) }}">View</a> |
+                                            <a href="{{ route('todos.edit', $todo->id) }}">Edit</a> | 
+                                            <form action="{{ route('todos.destroy', $todo->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit">Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>    
                                     @endforeach
                                 @endif

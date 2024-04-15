@@ -55,8 +55,8 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        //
-    }
+        return view('todos.show',['todo'=>$todo]);
+    }   
 
     /**
      * Show the form for editing the specified resource.
@@ -88,6 +88,7 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+        return back();
     }
 }
